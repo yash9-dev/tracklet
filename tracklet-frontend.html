@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracklet - Smart Inventory & Discovery Platform</title>
+    <link rel="stylesheet" href="tracklet-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-boxes"></i>
+                <span>Tracklet</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#inventory" class="nav-link">Inventory</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#discover" class="nav-link">Discover</a>
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Shop Owner</span>
+                </div>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item" data-section="inventory">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </div>
+                <div class="menu-item" data-section="analytics">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </div>
+                <div class="menu-item" data-section="discover">
+                    <i class="fas fa-search"></i>
+                    <span>Discover</span>
+                </div>
+                <div class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Product
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Products</h3>
+                            <p class="stat-number">1,247</p>
+                            <span class="stat-change positive">+5.2%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Low Stock Items</h3>
+                            <p class="stat-number">23</p>
+                            <span class="stat-change negative">+8 from yesterday</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Today's Sales</h3>
+                            <p class="stat-number">₹15,420</p>
+                            <span class="stat-change positive">+12.3%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Customer Searches</h3>
+                            <p class="stat-number">156</p>
+                            <span class="stat-change positive">+24 today</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Sales</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-info">
+                                    <span class="activity-title">Samsung Galaxy Earbuds</span>
+                                    <span class="activity-time">2 mins ago</span>
+                                </div>
+                                <span class="activity-amount">₹2,999</span>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-info">
+                                    <span class="activity-title">Nike Running Shoes</span>
+                                    <span class="activity-time">15 mins ago</span>
+                                </div>
+                                <span class="activity-amount">₹4,500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Low Stock Alerts</h3>
+                        <div class="alert-list">
+                            <div class="alert-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>iPhone Charger - Only 3 left</span>
+                            </div>
+                            <div class="alert-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Notebook Set - Only 5 left</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory Section -->
+            <section id="inventory" class="content-section">
+                <div class="section-header">
+                    <h1>Inventory Management</h1>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search products...">
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddProductModal()">
+                            <i class="fas fa-plus"></i>
+                            Add Product
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inventory Table -->
+                <div class="inventory-table-container">
+                    <table class="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://via.placeholder.com/40" alt="Product" class="product-image">
+                                        <span>Samsung Galaxy Earbuds</span>
+                                    </div>
+                                </td>
+                                <td>SGE-001</td>
+                                <td>Electronics</td>
+                                <td>
+                                    <span class="stock-level high">25</span>
+                                </td>
+                                <td>₹2,999</td>
+                                <td><span class="status-badge in-stock">In Stock</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" onclick="editProduct()">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" onclick="deleteProduct()">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h1>Analytics & Reports</h1>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <h3>Sales Trend (Last 7 Days)</h3>
+                        <div class="chart-placeholder">
+                            <canvas id="salesChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Top Products</h3>
+                        <div class="top-products-list">
+                            <div class="product-rank">
+                                <span class="rank">1</span>
+                                <span class="product-name">Samsung Earbuds</span>
+                                <span class="sales-count">45 sold</span>
+                            </div>
+                            <div class="product-rank">
+                                <span class="rank">2</span>
+                                <span class="product-name">iPhone Charger</span>
+                                <span class="sales-count">38 sold</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discover Section (Customer View) -->
+            <section id="discover" class="content-section">
+                <div class="section-header">
+                    <h1>Product Discovery</h1>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search products near you...">
+                        </div>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200" alt="Product" class="product-card-image">
+                        <div class="product-card-info">
+                            <h4>Samsung Galaxy Earbuds</h4>
+                            <p class="product-price">₹2,999</p>
+                            <div class="shop-info">
+                                <i class="fas fa-store"></i>
+                                <span>Tech Store - 0.5km away</span>
+                            </div>
+                            <div class="stock-info">
+                                <span class="stock-badge available">25 in stock</span>
+                            </div>
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-directions"></i>
+                                Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <span class="close" onclick="closeAddProductModal()">&times;</span>
+            </div>
+            <form class="product-form">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" placeholder="Enter product name">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>SKU</label>
+                        <input type="text" placeholder="Product SKU">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select>
+                            <option>Electronics</option>
+                            <option>Clothing</option>
+                            <option>Books</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Quantity</label>
+                        <input type="number" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="tracklet-script.js"></script>
+</body>
+</html>
