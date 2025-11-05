@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracklet - Smart Inventory & Discovery Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-cube nav-logo"></i>
+                <span class="nav-title">Tracklet</span>
+            </div>
+            
+            <!-- Landing Page Navigation -->
+            <div class="nav-menu" id="nav-menu-landing">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <button class="btn btn--primary" onclick="showAuthModal()">Get Started</button>
+            </div>
+
+            <!-- Authenticated Navigation -->
+            <div class="nav-menu hidden" id="nav-menu-auth">
+                <div class="nav-user">
+                    <img src="https://via.placeholder.com/32x32?text=U" alt="User" class="nav-avatar">
+                    <span class="nav-username" id="nav-username">User</span>
+                    <button class="btn btn--outline btn--sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Landing Page -->
+        <section id="landing-page" class="page-section active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Smart Inventory Management for Local Businesses</h1>
+                        <p class="hero-subtitle">Connect shopkeepers with customers through real-time inventory tracking and product discovery</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn--primary btn--lg" onclick="showAuthModal('shopkeeper')">For Shopkeepers</button>
+                            <button class="btn btn--outline btn--lg" onclick="showAuthModal('customer')">For Customers</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features" id="features">
+                <div class="container">
+                    <h2 class="section-title">Why Choose Tracklet?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3>For Shopkeepers</h3>
+                            <p>Digital inventory management, sales tracking, and customer visibility all in one platform</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>For Customers</h3>
+                            <p>Find products in local stores before visiting, save time and discover nearby availability</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Real-time Analytics</h3>
+                            <p>Track sales performance, inventory levels, and customer trends with powerful insights</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Shopkeeper Dashboard -->
+        <section id="shopkeeper-dashboard" class="page-section">
+            <div class="dashboard-container">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <i class="fas fa-cube"></i>
+                        <span>Tracklet</span>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a href="#" class="sidebar-link active" onclick="showDashboardView('overview')">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="#" class="sidebar-link" onclick="showDashboardView('inventory')">
+                            <i class="fas fa-boxes"></i>
+                            <span>Inventory</span>
+                        </a>
+                        <a href="#" class="sidebar-link" onclick="showDashboardView('pos')">
+                            <i class="fas fa-cash-register"></i>
+                            <span>Point of Sale</span>
+                        </a>
+                        <a href="#" class="sidebar-link" onclick="showDashboardView('orders')">
+                            <i class="fas fa-receipt"></i>
+                            <span>Orders</span>
+                        </a>
+                        <a href="#" class="sidebar-link" onclick="showDashboardView('analytics')">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                        <a href="#" class="sidebar-link" onclick="showDashboardView('settings')">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    <!-- Dashboard Overview -->
+                    <div id="dashboard-overview" class="dashboard-view active">
+                        <div class="dashboard-header">
+                            <h1>Dashboard Overview</h1>
+                            <p>Welcome back, Alex! Here's what's happening with your store today.</p>
+                        </div>
+
+                        <!-- KPI Cards -->
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="kpi-content">
+                                    <h3>Total Products</h3>
+                                    <p class="kpi-value">156</p>
+                                    <span class="kpi-change positive">+12 this month</span>
+                                </div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="kpi-content">
+                                    <h3>Low Stock Alerts</h3>
+                                    <p class="kpi-value">8</p>
+                                    <span class="kpi-change negative">Needs attention</span>
+                                </div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="kpi-content">
+                                    <h3>Today's Sales</h3>
+                                    <p class="kpi-value">$1,245</p>
+                                    <span class="kpi-change positive">+15% from yesterday</span>
+                                </div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="kpi-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="kpi-content">
+                                    <h3>Monthly Revenue</h3>
+                                    <p class="kpi-value">$28,900</p>
+                                    <span class="kpi-change positive">+12.5% vs last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div class="charts-row">
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <h3>Sales Trend</h3>
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Recent Orders -->
+                        <div class="recent-section">
+                            <div class="section-header">
+                                <h3>Recent Orders</h3>
+                                <button class="btn btn--outline btn--sm">View All</button>
+                            </div>
+                            <div class="orders-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer</th>
+                                            <th>Items</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-orders-table">
+                                        <!-- Orders populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Management -->
+                    <div id="dashboard-inventory" class="dashboard-view">
+                        <div class="dashboard-header">
+                            <h1>Inventory Management</h1>
+                            <button class="btn btn--primary" onclick="showAddProductModal()">
+                                <i class="fas fa-plus"></i> Add Product
+                            </button>
+                        </div>
+
+                        <!-- Inventory Controls -->
+                        <div class="inventory-controls">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search products..." id="inventory-search">
+                            </div>
+                            <div class="filter-controls">
+                                <select id="category-filter">
+                                    <option value="">All Categories</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Groceries">Groceries</option>
+                                    <option value="Clothing">Clothing</option>
+                                </select>
+                                <select id="stock-filter">
+                                    <option value="">All Stock Levels</option>
+                                    <option value="In Stock">In Stock</option>
+                                    <option value="Low Stock">Low Stock</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div class="products-grid" id="products-grid">
+                            <!-- Products populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Point of Sale -->
+                    <div id="dashboard-pos" class="dashboard-view">
+                        <div class="dashboard-header">
+                            <h1>Point of Sale</h1>
+                        </div>
+                        
+                        <div class="pos-container">
+                            <div class="pos-products">
+                                <div class="pos-categories">
+                                    <button class="pos-category-btn active" onclick="filterPOSProducts('all')">All</button>
+                                    <button class="pos-category-btn" onclick="filterPOSProducts('Electronics')">Electronics</button>
+                                    <button class="pos-category-btn" onclick="filterPOSProducts('Groceries')">Groceries</button>
+                                    <button class="pos-category-btn" onclick="filterPOSProducts('Clothing')">Clothing</button>
+                                </div>
+                                <div class="pos-products-grid" id="pos-products-grid">
+                                    <!-- POS Products populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="pos-checkout">
+                                <h3>Current Order</h3>
+                                <div class="pos-order-items" id="pos-order-items">
+                                    <p class="empty-order">No items added</p>
+                                </div>
+                                <div class="pos-totals">
+                                    <div class="pos-total-row">
+                                        <span>Subtotal:</span>
+                                        <span id="pos-subtotal">$0.00</span>
+                                    </div>
+                                    <div class="pos-total-row">
+                                        <span>Tax (8%):</span>
+                                        <span id="pos-tax">$0.00</span>
+                                    </div>
+                                    <div class="pos-total-row total">
+                                        <span>Total:</span>
+                                        <span id="pos-total">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="pos-actions">
+                                    <button class="btn btn--outline" onclick="clearPOSOrder()">Clear</button>
+                                    <button class="btn btn--primary" onclick="processPOSSale()">Process Sale</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders -->
+                    <div id="dashboard-orders" class="dashboard-view">
+                        <div class="dashboard-header">
+                            <h1>Order History</h1>
+                        </div>
+                        <div class="orders-list" id="orders-list">
+                            <!-- Orders populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Analytics -->
+                    <div id="dashboard-analytics" class="dashboard-view">
+                        <div class="dashboard-header">
+                            <h1>Analytics & Reports</h1>
+                        </div>
+                        <div class="analytics-grid">
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <h3>Monthly Sales</h3>
+                                <canvas id="monthlySalesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div id="dashboard-settings" class="dashboard-view">
+                        <div class="dashboard-header">
+                            <h1>Settings</h1>
+                        </div>
+                        <div class="settings-content">
+                            <div class="settings-section">
+                                <h3>Shop Profile</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Shop Name</label>
+                                    <input type="text" class="form-control" value="Tech Haven Electronics">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" value="123 Main Street, Downtown">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" class="form-control" value="+1-555-0123">
+                                </div>
+                                <button class="btn btn--primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Interface -->
+        <section id="customer-interface" class="page-section">
+            <div class="customer-container">
+                <!-- Customer Header -->
+                <header class="customer-header">
+                    <div class="container">
+                        <div class="customer-nav">
+                            <div class="nav-brand">
+                                <i class="fas fa-cube"></i>
+                                <span>Tracklet</span>
+                            </div>
+                            <nav class="customer-menu">
+                                <a href="#" class="customer-link active" onclick="showCustomerView('discover')">Discover</a>
+                                <a href="#" class="customer-link" onclick="showCustomerView('stores')">Stores</a>
+                                <a href="#" class="customer-link" onclick="showCustomerView('favorites')">Favorites</a>
+                                <a href="#" class="customer-link" onclick="showCustomerView('profile')">Profile</a>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Customer Content -->
+                <div class="customer-content">
+                    <!-- Product Discovery -->
+                    <div id="customer-discover" class="customer-view active">
+                        <div class="container">
+                            <div class="discover-header">
+                                <h1>Discover Products</h1>
+                                <p>Find what you need in nearby stores</p>
+                            </div>
+
+                            <!-- Search and Filters -->
+                            <div class="discover-controls">
+                                <div class="search-bar">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Search for products..." id="customer-search">
+                                </div>
+                                <div class="filter-controls">
+                                    <select id="customer-category-filter">
+                                        <option value="">All Categories</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Groceries">Groceries</option>
+                                        <option value="Clothing">Clothing</option>
+                                    </select>
+                                    <select id="customer-availability-filter">
+                                        <option value="">All Availability</option>
+                                        <option value="In Stock">In Stock</option>
+                                        <option value="Low Stock">Low Stock</option>
+                                    </select>
+                                    <select id="customer-price-filter">
+                                        <option value="">All Prices</option>
+                                        <option value="0-50">Under $50</option>
+                                        <option value="50-100">$50 - $100</option>
+                                        <option value="100+">Over $100</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Products Results -->
+                            <div class="products-results" id="customer-products">
+                                <!-- Products populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Store Locator -->
+                    <div id="customer-stores" class="customer-view">
+                        <div class="container">
+                            <div class="stores-header">
+                                <h1>Local Stores</h1>
+                                <p>Find stores near you</p>
+                            </div>
+
+                            <div class="stores-grid" id="stores-grid">
+                                <!-- Stores populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorites -->
+                    <div id="customer-favorites" class="customer-view">
+                        <div class="container">
+                            <div class="favorites-header">
+                                <h1>Your Favorites</h1>
+                                <p>Products and stores you've saved</p>
+                            </div>
+
+                            <div class="favorites-content">
+                                <div class="favorites-section">
+                                    <h3>Favorite Products</h3>
+                                    <div class="favorites-grid" id="favorite-products">
+                                        <p>No favorite products yet</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Profile -->
+                    <div id="customer-profile" class="customer-view">
+                        <div class="container">
+                            <div class="profile-header">
+                                <h1>Your Profile</h1>
+                            </div>
+
+                            <div class="profile-content">
+                                <div class="profile-section">
+                                    <h3>Personal Information</h3>
+                                    <div class="form-group">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" value="Emma Davis">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" value="emma.davis@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Location</label>
+                                        <input type="text" class="form-control" value="Downtown">
+                                    </div>
+                                    <button class="btn btn--primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="auth-title">Welcome to Tracklet</h2>
+                <button class="modal-close" onclick="hideAuthModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-form">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" onclick="showAuthTab('login')">Login</button>
+                        <button class="auth-tab" onclick="showAuthTab('signup')">Sign Up</button>
+                    </div>
+                    
+                    <div id="login-form" class="auth-form-content active">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <button class="btn btn--primary btn--full-width" onclick="handleAuth('login')">Login</button>
+                    </div>
+                    
+                    <div id="signup-form" class="auth-form-content">
+                        <div class="form-group">
+                            <label class="form-label">User Type</label>
+                            <select class="form-control" id="user-type">
+                                <option value="shopkeeper">Shopkeeper</option>
+                                <option value="customer">Customer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Create a password">
+                        </div>
+                        <button class="btn btn--primary btn--full-width" onclick="handleAuth('signup')">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Product</h2>
+                <button class="modal-close" onclick="hideAddProductModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="new-product-name" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-control" id="new-product-category">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Books">Books</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price</label>
+                    <input type="number" class="form-control" id="new-product-price" placeholder="0.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Stock Quantity</label>
+                    <input type="number" class="form-control" id="new-product-stock" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" id="new-product-description" placeholder="Product description"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn--outline" onclick="hideAddProductModal()">Cancel</button>
+                    <button class="btn btn--primary" onclick="addNewProduct()">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
